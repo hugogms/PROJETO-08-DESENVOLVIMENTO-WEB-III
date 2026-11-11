@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Controle de Estoque</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Controle de Estoque</h1>
+        <p>Gerenciamento de produtos e fornecedores</p>
+    </header>
+
+    <main>
+
+        <!-- Resumo do estoque -->
+        <section class="resumo">
+
+            <div class="card">
+                <h3>Total de produtos</h3>
+                <p id="totalProdutos">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Valor do estoque</h3>
+                <p id="valorEstoque">R$ 0,00</p>
+            </div>
+
+            <div class="card">
+                <h3>Estoque baixo</h3>
+                <p id="estoqueBaixo">0</p>
+            </div>
+
+        </section>
+
+        <!-- Produtos -->
+        <section class="secao">
+
+            <div class="titulo-secao">
+                <h2>Produtos</h2>
+                <button id="btnNovoProduto">Novo produto</button>
+            </div>
+
+            <div class="filtros">
+
+                <input
+                    type="text"
+                    id="pesquisaProduto"
+                    placeholder="Pesquisar produto pelo nome"
+                >
+
+                <select id="filtroCategoria">
+                    <option value="">Todas as categorias</option>
+                </select>
+
+            </div>
+
+            <!-- Formulário de produto -->
+            <form id="formProduto" hidden>
+
+                <h3 id="tituloFormProduto">Cadastrar produto</h3>
+
+                <input type="hidden" id="produtoId">
+
+                <label for="nomeProduto">Nome</label>
+                <input type="text" id="nomeProduto" required>
+
+                <label for="codigoProduto">Código</label>
+                <input type="text" id="codigoProduto" required>
+
+                <label for="categoriaProduto">Categoria</label>
+                <input type="text" id="categoriaProduto" required>
+
+                <label for="descricaoProduto">Descrição</label>
+                <textarea id="descricaoProduto" required></textarea>
+
+                <label for="precoProduto">Preço</label>
+                <input type="number" id="precoProduto" min="0" step="0.01" required>
+
+                <label for="quantidadeProduto">Quantidade</label>
+                <input type="number" id="quantidadeProduto" min="0" step="1" required>
+
+                <label for="fornecedorProduto">Fornecedor</label>
+                <select id="fornecedorProduto" required>
+                    <option value="">Selecione um fornecedor</option>
+                </select>
+
+                <button type="submit">Salvar produto</button>
+                <button type="button" id="btnCancelarProduto">Cancelar</button>
+
+            </form>
+
+            <!-- Tabela de produtos -->
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Código</th>
+                            <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Fornecedor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaProdutos">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Fornecedores -->
+        <section class="secao">
+
+            <div class="titulo-secao">
+                <h2>Fornecedores</h2>
+                <button id="btnNovoFornecedor">Novo fornecedor</button>
+            </div>
+
+            <!-- Formulário de fornecedor -->
+            <form id="formFornecedor" hidden>
+
+                <h3 id="tituloFormFornecedor">Cadastrar fornecedor</h3>
+
+                <input type="hidden" id="fornecedorId">
+
+                <label for="cnpjFornecedor">CNPJ</label>
+
+                <div class="campo-cnpj">
+                    <input type="text" id="cnpjFornecedor" required>
+                    <button type="button" id="btnConsultarCNPJ">
+                        Consultar CNPJ
+                    </button>
+                </div>
+
+                <p id="statusCNPJ"></p>
+
+                <label for="razaoSocial">Razão social</label>
+                <input type="text" id="razaoSocial" required>
+
+                <label for="nomeFantasia">Nome fantasia</label>
+                <input type="text" id="nomeFantasia" required>
+
+                <label for="situacaoCadastral">Situação cadastral</label>
+                <input type="text" id="situacaoCadastral" readonly>
+
+                <label for="telefoneFornecedor">Telefone</label>
+                <input type="text" id="telefoneFornecedor" required>
+
+                <label for="emailFornecedor">E-mail</label>
+                <input type="email" id="emailFornecedor" required>
+
+                <label for="enderecoFornecedor">Endereço</label>
+                <input type="text" id="enderecoFornecedor" required>
+
+                <label for="municipioFornecedor">Município</label>
+                <input type="text" id="municipioFornecedor" readonly>
+
+                <label for="estadoFornecedor">Estado</label>
+                <input type="text" id="estadoFornecedor" readonly>
+
+                <button type="submit">Salvar fornecedor</button>
+                <button type="button" id="btnCancelarFornecedor">
+                    Cancelar
+                </button>
+
+            </form>
+
+            <!-- Tabela de fornecedores -->
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Razão social</th>
+                            <th>Nome fantasia</th>
+                            <th>CNPJ</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaFornecedores">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Sistema de Controle de Estoque</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
